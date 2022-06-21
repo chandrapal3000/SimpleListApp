@@ -15,7 +15,7 @@ export const itemListStyles = StyleSheet.create({
       elevation: 3,
     },
     itemNameContainerStyle: {
-      width: "32%",
+      width: "50%",
       marginLeft: 5,
       marginRight: 5,
     },
@@ -23,8 +23,17 @@ export const itemListStyles = StyleSheet.create({
       fontWeight: "bold",
       fontSize: 20,
     },
-    priceTextStyle: {
+    infoTextStyle: {
       color: "#C6C6C6",
+    },
+    rightSideViewContainer : {
+      width : "40%",
+      display : 'flex',
+      flexDirection : 'row',
+      // borderWidth : 1,
+      // borderColor : '#000',
+      // alignItems : 'flex-end',
+      justifyContent : 'flex-end',
     },
     boldVerticalLine: {
       borderLeftColor: "#F3E9E5",
@@ -45,14 +54,18 @@ export const itemListStyles = StyleSheet.create({
     iconsEdit: {
       marginLeft: 10,
       marginRight: 10,
-      width: "7%",
+      // borderWidth : 1,
+      // borderColor : '#000',
+      // width: "7%",
     },
     iconsDelete: {
       marginLeft: 10,
       marginRight: 10,
-      width: "7%",
+      // borderWidth : 1,
+      // borderColor : '#000',
+      // width: "7%",
     },
-    priceTextAppendStyle: {
+    infoTextAppendStyle: {
       width: "12%",
     },
   });

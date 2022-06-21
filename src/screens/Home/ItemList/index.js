@@ -42,6 +42,7 @@ export default function(props) {
           <Text>{props.item.info}</Text>
         </View> */}
         {/* Vertical Line Container */}
+        <View style={itemListStyles.rightSideViewContainer}>
         <View>
           <View style={itemListStyles.boldVerticalLine}></View>
         </View>
@@ -62,6 +63,7 @@ export default function(props) {
           >
             <Ionicons name="ios-trash-bin-sharp" size={23} color="#000" />
           </TouchableOpacity>
+        </View>
         </View>
       </View>
     );
