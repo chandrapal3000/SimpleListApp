@@ -34,13 +34,13 @@ export default function(props) {
         <View style={itemListStyles.itemNameContainerStyle}>
           <Text style={itemListStyles.itemNameTextStyle}>{props.item.name}</Text>
         </View>
-        {/* Price Container */}
-        <View>
-          <Text style={itemListStyles.priceTextStyle}>{"Price : ₹ "}</Text>
+        {/* Info Container */}
+        {/* <View>
+          <Text style={itemListStyles.infoTextStyle}>{"Info : ₹ "}</Text>
         </View>
-        <View style={itemListStyles.priceTextAppendStyle}>
-          <Text>{props.item.price}</Text>
-        </View>
+        <View style={itemListStyles.infoTextAppendStyle}>
+          <Text>{props.item.info}</Text>
+        </View> */}
         {/* Vertical Line Container */}
         <View>
           <View style={itemListStyles.boldVerticalLine}></View>

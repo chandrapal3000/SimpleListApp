@@ -28,7 +28,7 @@ export default function({ route, navigation })  {
           {itemList.map((value, index, array) => (
             <FinalItemList
               key={index}
-              item={{ name: value.name, price: value.price }}
+              item={{ name: value.name, info: value.info }}
             />
           ))}
         </ScrollView>

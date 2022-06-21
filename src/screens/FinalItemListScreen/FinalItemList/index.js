@@ -28,8 +28,8 @@ export default function (props){
             {props.item.name}
           </Text>
           <Text>
-            {'price: "'}
-            {props.item.price}
+            {'info: "'}
+            {props.item.info}
           </Text>
           <Text>{"},"}</Text>
         </View>
