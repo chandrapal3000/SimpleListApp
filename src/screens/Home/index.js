@@ -37,7 +37,9 @@ export default function(props){
     const FOODLIST_IN_ASYNC = "itemList";
     const UPDATE_FOOD_BUTTON_TEXT = "Update Item";
   
+    const [statusBarColor, setStatusBarColor] = useState("#fff");
     const [itemList, setItemList] = useState([]);
+    const [itemListTemp, setItemListTemp] = useState([]);
     const [modalOpen, setmodalOpen] = useState(false);
     const [itemName, setItemName] = useState("");
     const [itemPrice, setItemPrice] = useState("");
@@ -45,6 +47,8 @@ export default function(props){
     const [inputItemPrice, setInputItemPrice] = useState("");
     const [needToUpdateItem, setNeedToUpdateItem] = useState(false);
     const [updateAtIndex, setUpdateAtIndex] = useState(0);
+    const [inputSearchItemValue, setInputSearchItemValue] = useState("");
+    const [searchOn, setSearchOn] = useState(false);
   
     useEffect(() => {
       AsyncStorage.getItem(FOODLIST_IN_ASYNC).then((value) => {
@@ -59,6 +63,21 @@ export default function(props){
       console.log("Item list : ", itemList);
       setObjectToAsync(itemList);
     }, [itemList]);
+
+    useEffect(()=>{
+      modalOpen ? setStatusBarColor("rgba(0,0,0,.3)") : setStatusBarColor("#fff");
+    },[modalOpen])
+
+    useEffect(()=>{
+      if(inputSearchItemValue==""){
+        setItemListTemp(itemList);
+        setSearchOn(false);
+      } else{
+        setSearchOn(true);
+        // setItemListTemp(itemList);
+        setItemListTemp(itemList.filter(item=>item.name.toLowerCase().includes(inputSearchItemValue.toLowerCase())));
+      }
+    },[inputSearchItemValue])
   
     const setObjectToAsync = (object) => {
       AsyncStorage.setItem(FOODLIST_IN_ASYNC, JSON.stringify(object), (err) => {
@@ -135,19 +154,42 @@ export default function(props){
       },
     ];
   
-    return (
+    return (<>
+        <StatusBar style="auto" backgroundColor={statusBarColor} translucent={false} />
+
       <View style={styles.container}>
         {/* Heading */}
-        <View style={styles.heading}>
+        {/* <View style={styles.heading}>
           <Text style={styles.headingText}>{HEADING_TEXT}</Text>
+        </View> */}
+        {/* <View style={styles.marginFix}></View> */}
+        <View style={styles.topSearchHeaderParentContainer}>
+        <View style={styles.topSearchHeader}>
+          <View style={styles.serchBoxContainer}>
+          <TextInput
+                      style={styles.serchBoxTextInput}
+                      value={inputSearchItemValue}
+                      placeholder={"Search items..."}
+                      onChangeText={(value) => {
+                        console.log("hey")
+                        setInputSearchItemValue(value);
+                      }}
+                    />
+          </View>
+          <View style={styles.addItemToListBox}>
+          <TouchableOpacity onPress={() => setmodalOpen(true)}><Ionicons name="add-circle" size={40} color="black" /></TouchableOpacity>
+</View>
         </View>
   
         {/*Bold Horizontal Line */}
+        
         <View style={styles.boldHorizontalLine}></View>
+        </View>
   
         {/* Item list Items */}
+        <View style={styles.itemItemsContainer}>
+
         {itemList.length > 0 && (
-          <View style={styles.itemItemsContainer}>
             <ScrollView>
               {/* {itemList.map((value, index, array) => (
                 <FinalItemList
@@ -156,7 +198,15 @@ export default function(props){
                 />
               ))} */}
   
-              {itemList.map((value, index, array) => (
+              {searchOn ? itemListTemp.map((value, index, array) => (
+                <ItemList
+                  key={index}
+                  item={{ name: value.name, price: value.price }}
+                  deleteItem={deleteItem}
+                  editItem={editItem}
+                  index={index}
+                />
+              )) : itemList.map((value, index, array) => (
                 <ItemList
                   key={index}
                   item={{ name: value.name, price: value.price }}
@@ -166,14 +216,15 @@ export default function(props){
                 />
               ))}
             </ScrollView>
-          </View>
         )}
   
         {/* Dotted Horizontal Line */}
         <View style={styles.dottedHorizontalLine}></View>
+        </View>
+
   
         {/* Add Item Item */}
-        <TouchableOpacity onPress={() => setmodalOpen(true)}>
+        {/* <TouchableOpacity onPress={() => setmodalOpen(true)}>
           <View style={styles.addItemItemContainer}>
             <View style={styles.icons}>
               <Ionicons name="add" size={30} color="black" />
@@ -184,11 +235,11 @@ export default function(props){
               </Text>
             </View>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
   
         {/* Final Item List Button */}
   
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => {
             props.navigation.navigate("FinalItemListScreen", {
               itemList: itemList,
@@ -200,7 +251,7 @@ export default function(props){
               {FINAL_FOOD_LIST_BUTTON_TEXT}
             </Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
   
         {/* Add Item Items Pop Up Modal*/}
   
@@ -215,7 +266,7 @@ export default function(props){
           <View style={modalStyles.fullContainer}>
             {/* Half screen */}
   
-            <View style={modalStyles.placeHolderContainer}></View>
+            <View style={modalStyles.placeHolderContainer}><TouchableOpacity onPress={()=>setmodalOpen(false)}><View style={modalStyles.placeHolderContainerSubContainer}></View></TouchableOpacity></View>
             <View style={modalStyles.mainContainer}>
               {/* smallHorizontalBar */}
               <View style={modalStyles.smallHorizontalBarContainer}>
@@ -307,7 +358,7 @@ export default function(props){
           </View>
         </Modal>
   
-        <StatusBar style="auto" />
       </View>
+      </>
     );
   };
