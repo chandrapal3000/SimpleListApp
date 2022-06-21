@@ -42,9 +42,9 @@ export default function(props){
     const [itemListTemp, setItemListTemp] = useState([]);
     const [modalOpen, setmodalOpen] = useState(false);
     const [itemName, setItemName] = useState("");
-    const [itemPrice, setItemPrice] = useState("");
+    const [itemInfo, setItemInfo] = useState("");
     const [inputItemName, setInputItemName] = useState("");
-    const [inputItemPrice, setInputItemPrice] = useState("");
+    const [inputItemInfo, setInputItemInfo] = useState("");
     const [needToUpdateItem, setNeedToUpdateItem] = useState(false);
     const [updateAtIndex, setUpdateAtIndex] = useState(0);
     const [inputSearchItemValue, setInputSearchItemValue] = useState("");
@@ -92,26 +92,26 @@ export default function(props){
     };
   
     const checkItemItem = () => {
-      console.log("item and price : ", itemName, itemPrice);
-      if (itemName != null && itemPrice != null) {
-        if (itemName != "" && itemPrice != "") {
+      console.log("item and info : ", itemName, itemInfo);
+      if (itemName != null) {
+        if (itemName != "") {
           if (needToUpdateItem) {
             let arr = [...itemList];
-            arr[updateAtIndex] = { name: itemName, price: itemPrice };
+            arr[updateAtIndex] = { name: itemName, info: itemInfo };
             setItemList([...arr]);
           } else {
-            setItemList([{ name: itemName, price: itemPrice }, ...itemList]);
+            setItemList([{ name: itemName, info: itemInfo }, ...itemList]);
           }
           setItemName("");
-          setItemPrice("");
+          setItemInfo("");
           setInputItemName("");
-          setInputItemPrice("");
+          setInputItemInfo("");
           setNeedToUpdateItem(false);
           setUpdateAtIndex(-1);
           setmodalOpen(false);
           toast("Item added successfully");
         } else {
-          toast("Empty values");
+          toast("Empty value");
         }
       } else {
         toast("Something went wrong");
@@ -120,7 +120,7 @@ export default function(props){
   
     const deleteItem = (index) => {
       console.log("Hey : ", index);
-      console.log("array : ", itemList[index].name, itemList[index].price);
+      console.log("array : ", itemList[index].name, itemList[index].info);
       if (index > -1) {
         let arr = [...itemList];
         arr.splice(index, 1);
@@ -132,9 +132,9 @@ export default function(props){
     const editItem = (index) => {
       setmodalOpen(true);
       setInputItemName(itemList[index].name);
-      setInputItemPrice(itemList[index].price);
+      setInputItemInfo(itemList[index].info);
       setItemName(itemList[index].name);
-      setItemPrice(itemList[index].price);
+      setItemInfo(itemList[index].info);
       setNeedToUpdateItem(true);
       setUpdateAtIndex(index);
     };
@@ -142,15 +142,15 @@ export default function(props){
     const itemObject = [
       {
         name: "mango",
-        price: "30",
+        info: "30",
       },
       {
         name: "banana",
-        price: "40",
+        info: "40",
       },
       {
         name: "mango",
-        price: "30",
+        info: "30",
       },
     ];
   
@@ -194,14 +194,14 @@ export default function(props){
               {/* {itemList.map((value, index, array) => (
                 <FinalItemList
                   key={index}
-                  item={{ name: value.name, price: value.price }}
+                  item={{ name: value.name, info: value.info }}
                 />
               ))} */}
   
               {searchOn ? itemListTemp.map((value, index, array) => (
                 <ItemList
                   key={index}
-                  item={{ name: value.name, price: value.price }}
+                  item={{ name: value.name, info: value.info }}
                   deleteItem={deleteItem}
                   editItem={editItem}
                   index={index}
@@ -209,7 +209,7 @@ export default function(props){
               )) : itemList.map((value, index, array) => (
                 <ItemList
                   key={index}
-                  item={{ name: value.name, price: value.price }}
+                  item={{ name: value.name, info: value.info }}
                   deleteItem={deleteItem}
                   editItem={editItem}
                   index={index}
@@ -319,21 +319,22 @@ export default function(props){
                         setInputItemName(value);
                       }}
                     />
+
+                    {/* Add Item Info */}
   
-                    <Text style={[styles.smallText, formStyles.formText]}>
-                      {"Item Price"}
+                    {/* <Text style={[styles.smallText, formStyles.formText]}>
+                      {"Item Info"}
                     </Text>
                     <TextInput
                       keyboardType="numeric"
-                      value={inputItemPrice}
+                      value={inputItemInfo}
                       style={formStyles.textInput}
                       onChangeText={(value) => {
-                        setItemPrice(value);
-                        setInputItemPrice(value);
+                        setItemInfo(value);
+                        setInputItemInfo(value);
                       }}
-                    />
+                    /> */}
   
-                    {/* Add Item Price */}
   
                     {/*Add/Update Item Submit Button */}
   
