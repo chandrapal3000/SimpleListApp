@@ -1,5 +1,46 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet,Dimensions,Constants } from "react-native";
 export const styles = StyleSheet.create({
+  marginFix : {
+    marginTop : 50,
+  },
+  topSearchHeader : {
+    display : 'flex',
+    flexDirection : 'row',
+    alignItems : 'center'
+  },
+  serchBoxContainer:{
+    width : '74%',
+    marginLeft : "3%",
+    marginRight : "3%",
+  },
+  serchBoxTextInput : {
+    borderColor: "#D3D3D3",
+    borderWidth: 1,
+    borderRadius: 10,
+    marginTop: 10,
+    marginBottom: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  addItemToListBox : {
+    width : '14%',
+    marginLeft : "3%",
+    marginRight : "3%",
+    display : 'flex',
+    alignItems : 'center',
+  },
+  container : {
+    backgroundColor : "#fff",
+    height : Dimensions.get('window').height,
+    margin : 0,
+    // borderColor : '#000',
+    // borderWidth : 1,
+  },
+  topSearchHeaderParentContainer : {
+    minHeight: Dimensions.get('window').height*.1,
+  },
   heading: {
     marginTop: 100,
     display: "flex",
@@ -23,7 +64,7 @@ export const styles = StyleSheet.create({
     elevation: 10,
   },
   itemItemsContainer: {
-    maxHeight: 400,
+    height: Dimensions.get('window').height*.9,
   },
   dottedHorizontalLine: {
     borderColor: "#F3E9E5",
