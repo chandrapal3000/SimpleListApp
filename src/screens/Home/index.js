@@ -17,48 +17,48 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Entypo from "@expo/vector-icons/Entypo";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { styles,foodListStyles, FinalFoodListScreenStyles } from "../../style/styles";
+import { styles,itemListStyles, FinalItemListScreenStyles } from "../../style/styles";
 import { modalStyles } from "../../style/modalStyles";
 import { formStyles } from "../../style/formStyles";
-import FinalFoodList from "../FinalFoodListScreen/FinalFoodList";
+import FinalItemList from "../FinalItemListScreen/FinalItemList";
 import { toast } from "../../../App";
-import FoodList from "./FoodList";
+import ItemList from "./ItemList";
 
 export default function(props){
-    const HEADING_TEXT = "Food List";
-    const ADD_FOOD_ITEM_TEXT = "Add Food Item";
+    const HEADING_TEXT = "Item List";
+    const ADD_FOOD_ITEM_TEXT = "Add Item Item";
     const ICON = "Entypo";
     const DASHBOARDICON = "AntDesign";
     const EDIT_ICON = "edit";
     const DELETE_ICON = "delete";
-    const ADD_FOOD_TEXT_MODAL = "Add Food";
-    const ADD_FOOD_SUBMIT_BUTTON_TEXT = "Add Food Item";
-    const FINAL_FOOD_LIST_BUTTON_TEXT = "Final Food List";
-    const FOODLIST_IN_ASYNC = "foodList";
-    const UPDATE_FOOD_BUTTON_TEXT = "Update Food";
+    const ADD_FOOD_TEXT_MODAL = "Add Item";
+    const ADD_FOOD_SUBMIT_BUTTON_TEXT = "Add Item Item";
+    const FINAL_FOOD_LIST_BUTTON_TEXT = "Final Item List";
+    const FOODLIST_IN_ASYNC = "itemList";
+    const UPDATE_FOOD_BUTTON_TEXT = "Update Item";
   
-    const [foodList, setFoodList] = useState([]);
+    const [itemList, setItemList] = useState([]);
     const [modalOpen, setmodalOpen] = useState(false);
-    const [foodName, setFoodName] = useState("");
-    const [foodPrice, setFoodPrice] = useState("");
-    const [inputFoodName, setInputFoodName] = useState("");
-    const [inputFoodPrice, setInputFoodPrice] = useState("");
-    const [needToUpdateFood, setNeedToUpdateFood] = useState(false);
+    const [itemName, setItemName] = useState("");
+    const [itemPrice, setItemPrice] = useState("");
+    const [inputItemName, setInputItemName] = useState("");
+    const [inputItemPrice, setInputItemPrice] = useState("");
+    const [needToUpdateItem, setNeedToUpdateItem] = useState(false);
     const [updateAtIndex, setUpdateAtIndex] = useState(0);
   
     useEffect(() => {
       AsyncStorage.getItem(FOODLIST_IN_ASYNC).then((value) => {
         if (value != null) {
-          const foodListAsync = JSON.parse(value);
-          setFoodList(foodListAsync);
+          const itemListAsync = JSON.parse(value);
+          setItemList(itemListAsync);
         }
       });
     }, []);
   
     useEffect(() => {
-      console.log("Food list : ", foodList);
-      setObjectToAsync(foodList);
-    }, [foodList]);
+      console.log("Item list : ", itemList);
+      setObjectToAsync(itemList);
+    }, [itemList]);
   
     const setObjectToAsync = (object) => {
       AsyncStorage.setItem(FOODLIST_IN_ASYNC, JSON.stringify(object), (err) => {
@@ -72,25 +72,25 @@ export default function(props){
       });
     };
   
-    const checkFoodItem = () => {
-      console.log("food and price : ", foodName, foodPrice);
-      if (foodName != null && foodPrice != null) {
-        if (foodName != "" && foodPrice != "") {
-          if (needToUpdateFood) {
-            let arr = [...foodList];
-            arr[updateAtIndex] = { name: foodName, price: foodPrice };
-            setFoodList([...arr]);
+    const checkItemItem = () => {
+      console.log("item and price : ", itemName, itemPrice);
+      if (itemName != null && itemPrice != null) {
+        if (itemName != "" && itemPrice != "") {
+          if (needToUpdateItem) {
+            let arr = [...itemList];
+            arr[updateAtIndex] = { name: itemName, price: itemPrice };
+            setItemList([...arr]);
           } else {
-            setFoodList([{ name: foodName, price: foodPrice }, ...foodList]);
+            setItemList([{ name: itemName, price: itemPrice }, ...itemList]);
           }
-          setFoodName("");
-          setFoodPrice("");
-          setInputFoodName("");
-          setInputFoodPrice("");
-          setNeedToUpdateFood(false);
+          setItemName("");
+          setItemPrice("");
+          setInputItemName("");
+          setInputItemPrice("");
+          setNeedToUpdateItem(false);
           setUpdateAtIndex(-1);
           setmodalOpen(false);
-          toast("Food added successfully");
+          toast("Item added successfully");
         } else {
           toast("Empty values");
         }
@@ -99,28 +99,28 @@ export default function(props){
       }
     };
   
-    const deleteFood = (index) => {
+    const deleteItem = (index) => {
       console.log("Hey : ", index);
-      console.log("array : ", foodList[index].name, foodList[index].price);
+      console.log("array : ", itemList[index].name, itemList[index].price);
       if (index > -1) {
-        let arr = [...foodList];
+        let arr = [...itemList];
         arr.splice(index, 1);
-        setFoodList([...arr]);
+        setItemList([...arr]);
         toast("Item deleted successfully");
       }
     };
   
-    const editFood = (index) => {
+    const editItem = (index) => {
       setmodalOpen(true);
-      setInputFoodName(foodList[index].name);
-      setInputFoodPrice(foodList[index].price);
-      setFoodName(foodList[index].name);
-      setFoodPrice(foodList[index].price);
-      setNeedToUpdateFood(true);
+      setInputItemName(itemList[index].name);
+      setInputItemPrice(itemList[index].price);
+      setItemName(itemList[index].name);
+      setItemPrice(itemList[index].price);
+      setNeedToUpdateItem(true);
       setUpdateAtIndex(index);
     };
   
-    const foodObject = [
+    const itemObject = [
       {
         name: "mango",
         price: "30",
@@ -145,23 +145,23 @@ export default function(props){
         {/*Bold Horizontal Line */}
         <View style={styles.boldHorizontalLine}></View>
   
-        {/* Food list Items */}
-        {foodList.length > 0 && (
-          <View style={styles.foodItemsContainer}>
+        {/* Item list Items */}
+        {itemList.length > 0 && (
+          <View style={styles.itemItemsContainer}>
             <ScrollView>
-              {/* {foodList.map((value, index, array) => (
-                <FinalFoodList
+              {/* {itemList.map((value, index, array) => (
+                <FinalItemList
                   key={index}
-                  food={{ name: value.name, price: value.price }}
+                  item={{ name: value.name, price: value.price }}
                 />
               ))} */}
   
-              {foodList.map((value, index, array) => (
-                <FoodList
+              {itemList.map((value, index, array) => (
+                <ItemList
                   key={index}
-                  food={{ name: value.name, price: value.price }}
-                  deleteFood={deleteFood}
-                  editFood={editFood}
+                  item={{ name: value.name, price: value.price }}
+                  deleteItem={deleteItem}
+                  editItem={editItem}
                   index={index}
                 />
               ))}
@@ -172,37 +172,37 @@ export default function(props){
         {/* Dotted Horizontal Line */}
         <View style={styles.dottedHorizontalLine}></View>
   
-        {/* Add Food Item */}
+        {/* Add Item Item */}
         <TouchableOpacity onPress={() => setmodalOpen(true)}>
-          <View style={styles.addFoodItemContainer}>
+          <View style={styles.addItemItemContainer}>
             <View style={styles.icons}>
               <Ionicons name="add" size={30} color="black" />
             </View>
             <View>
-              <Text style={styles.addFoodItemTextStyle}>
+              <Text style={styles.addItemItemTextStyle}>
                 {ADD_FOOD_ITEM_TEXT}
               </Text>
             </View>
           </View>
         </TouchableOpacity>
   
-        {/* Final Food List Button */}
+        {/* Final Item List Button */}
   
         <TouchableOpacity
           onPress={() => {
-            props.navigation.navigate("FinalFoodListScreen", {
-              foodList: foodList,
+            props.navigation.navigate("FinalItemListScreen", {
+              itemList: itemList,
             });
           }}
         >
-          <View style={styles.finalFoodListContainerButton}>
-            <Text style={styles.finalFoodListContainerButtonText}>
+          <View style={styles.finalItemListContainerButton}>
+            <Text style={styles.finalItemListContainerButtonText}>
               {FINAL_FOOD_LIST_BUTTON_TEXT}
             </Text>
           </View>
         </TouchableOpacity>
   
-        {/* Add Food Items Pop Up Modal*/}
+        {/* Add Item Items Pop Up Modal*/}
   
         <Modal
           animationType="slide"
@@ -227,11 +227,11 @@ export default function(props){
               <View style={modalStyles.paddingWrapperContainer}>
                 {/* Model Header Content */}
                 <View style={modalStyles.modalHeader}>
-                  {/* Add Food */}
-                  <View style={modalStyles.addFoodTextContainer}>
-                    <View style={modalStyles.addFoodTextSubContainer}>
+                  {/* Add Item */}
+                  <View style={modalStyles.addItemTextContainer}>
+                    <View style={modalStyles.addItemTextSubContainer}>
                       <Text style={styles.mediumBoldText}>
-                        {needToUpdateFood
+                        {needToUpdateItem
                           ? UPDATE_FOOD_BUTTON_TEXT
                           : ADD_FOOD_TEXT_MODAL}
                       </Text>
@@ -253,48 +253,48 @@ export default function(props){
                 </View>
                 <View style={modalStyles.scrollviewContainer}>
                   <ScrollView>
-                    {/* Food Form */}
+                    {/* Item Form */}
   
-                    {/* Add food Name */}
+                    {/* Add item Name */}
   
                     <Text style={[styles.smallText, formStyles.formText]}>
-                      {"Food Name"}
+                      {"Item Name"}
                     </Text>
                     <TextInput
                       style={formStyles.textInput}
-                      value={inputFoodName}
+                      value={inputItemName}
                       onChangeText={(value) => {
-                        setFoodName(value);
-                        setInputFoodName(value);
+                        setItemName(value);
+                        setInputItemName(value);
                       }}
                     />
   
                     <Text style={[styles.smallText, formStyles.formText]}>
-                      {"Food Price"}
+                      {"Item Price"}
                     </Text>
                     <TextInput
                       keyboardType="numeric"
-                      value={inputFoodPrice}
+                      value={inputItemPrice}
                       style={formStyles.textInput}
                       onChangeText={(value) => {
-                        setFoodPrice(value);
-                        setInputFoodPrice(value);
+                        setItemPrice(value);
+                        setInputItemPrice(value);
                       }}
                     />
   
-                    {/* Add Food Price */}
+                    {/* Add Item Price */}
   
-                    {/*Add/Update Food Submit Button */}
+                    {/*Add/Update Item Submit Button */}
   
                     <TouchableOpacity
                       onPress={() => {
-                        checkFoodItem();
+                        checkItemItem();
                         // setmodalOpen(false);
                       }}
                     >
-                      <View style={formStyles.addFoodItemSubmitButton}>
-                        <Text style={formStyles.addFoodItemSubmitButtonText}>
-                          {needToUpdateFood
+                      <View style={formStyles.addItemItemSubmitButton}>
+                        <Text style={formStyles.addItemItemSubmitButtonText}>
+                          {needToUpdateItem
                             ? UPDATE_FOOD_BUTTON_TEXT
                             : ADD_FOOD_SUBMIT_BUTTON_TEXT}
                         </Text>

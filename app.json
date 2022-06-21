@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "food_list_app",
-    "slug": "food_list_app",
+    "name": "item_list_app",
+    "slug": "item_list_app",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

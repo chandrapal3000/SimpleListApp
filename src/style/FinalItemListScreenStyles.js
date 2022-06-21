@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-export const FinalFoodListScreenStyles = StyleSheet.create({
+export const FinalItemListScreenStyles = StyleSheet.create({
     container: {
       padding: 20,
     },

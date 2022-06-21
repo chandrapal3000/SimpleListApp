@@ -17,18 +17,18 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Entypo from "@expo/vector-icons/Entypo";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { styles,formStyles, foodListStyles, FinalFoodListScreenStyles,modalStyles } from "../../style/FinalFoodListScreenStyles";
-import FinalFoodList from "./FinalFoodList";
+import { styles,formStyles, itemListStyles, FinalItemListScreenStyles,modalStyles } from "../../style/FinalItemListScreenStyles";
+import FinalItemList from "./FinalItemList";
 
 export default function({ route, navigation })  {
-    const { foodList } = route.params;
+    const { itemList } = route.params;
     return (
-      <View style={FinalFoodListScreenStyles.container}>
+      <View style={FinalItemListScreenStyles.container}>
         <ScrollView>
-          {foodList.map((value, index, array) => (
-            <FinalFoodList
+          {itemList.map((value, index, array) => (
+            <FinalItemList
               key={index}
-              food={{ name: value.name, price: value.price }}
+              item={{ name: value.name, price: value.price }}
             />
           ))}
         </ScrollView>
