@@ -16,7 +16,7 @@ export const formStyles = StyleSheet.create({
       paddingLeft: 10,
       paddingRight: 10,
     },
-    addFoodItemSubmitButton: {
+    addItemItemSubmitButton: {
       borderColor: "#D3D3D3",
       borderWidth: 1,
       borderRadius: 10,
@@ -30,7 +30,7 @@ export const formStyles = StyleSheet.create({
       display: "flex",
       alignItems: "center",
     },
-    addFoodItemSubmitButtonText: {
+    addItemItemSubmitButtonText: {
       color: "#fff",
       fontWeight: "bold",
       fontSize: 20,

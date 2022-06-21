@@ -25,11 +25,11 @@ export default function (props){
           <Text>{"{"}</Text>
           <Text>
             {'name: "'}
-            {props.food.name}
+            {props.item.name}
           </Text>
           <Text>
             {'price: "'}
-            {props.food.price}
+            {props.item.price}
           </Text>
           <Text>{"},"}</Text>
         </View>

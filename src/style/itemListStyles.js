@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-export const foodListStyles = StyleSheet.create({
+export const itemListStyles = StyleSheet.create({
     mainContainer: {
       flexDirection: "row",
       alignItems: "center",
@@ -14,12 +14,12 @@ export const foodListStyles = StyleSheet.create({
       backgroundColor: "#F5F5F5",
       elevation: 3,
     },
-    foodNameContainerStyle: {
+    itemNameContainerStyle: {
       width: "32%",
       marginLeft: 5,
       marginRight: 5,
     },
-    foodNameTextStyle: {
+    itemNameTextStyle: {
       fontWeight: "bold",
       fontSize: 20,
     },

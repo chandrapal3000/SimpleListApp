@@ -17,47 +17,47 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Entypo from "@expo/vector-icons/Entypo";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { styles,formStyles, foodListStyles, FinalFoodListScreenStyles,modalStyles } from "../../../style/foodListStyles";
+import { styles,formStyles, itemListStyles, FinalItemListScreenStyles,modalStyles } from "../../../style/itemListStyles";
 
 
 export default function(props) {
-    const food = props.food;
+    const item = props.item;
     return (
-      <View style={foodListStyles.mainContainer}>
+      <View style={itemListStyles.mainContainer}>
         {/* Dashboard Sign Container*/}
-        <View style={foodListStyles.iconsDashboard}>
+        <View style={itemListStyles.iconsDashboard}>
           <TouchableOpacity>
             <Ionicons name="apps" size={23} color="#CFCFCF" />
           </TouchableOpacity>
         </View>
-        {/* Food Name Container */}
-        <View style={foodListStyles.foodNameContainerStyle}>
-          <Text style={foodListStyles.foodNameTextStyle}>{props.food.name}</Text>
+        {/* Item Name Container */}
+        <View style={itemListStyles.itemNameContainerStyle}>
+          <Text style={itemListStyles.itemNameTextStyle}>{props.item.name}</Text>
         </View>
         {/* Price Container */}
         <View>
-          <Text style={foodListStyles.priceTextStyle}>{"Price : ₹ "}</Text>
+          <Text style={itemListStyles.priceTextStyle}>{"Price : ₹ "}</Text>
         </View>
-        <View style={foodListStyles.priceTextAppendStyle}>
-          <Text>{props.food.price}</Text>
+        <View style={itemListStyles.priceTextAppendStyle}>
+          <Text>{props.item.price}</Text>
         </View>
         {/* Vertical Line Container */}
         <View>
-          <View style={foodListStyles.boldVerticalLine}></View>
+          <View style={itemListStyles.boldVerticalLine}></View>
         </View>
         {/* Edit Icon Container */}
   
-        <View style={foodListStyles.iconsEdit}>
-          <TouchableOpacity onPress={() => props.editFood(props.index)}>
+        <View style={itemListStyles.iconsEdit}>
+          <TouchableOpacity onPress={() => props.editItem(props.index)}>
             <Ionicons name="pencil" size={23} color="#000" />
           </TouchableOpacity>
         </View>
   
         {/* Delete Icon Container */}
-        <View style={foodListStyles.iconsDelete}>
+        <View style={itemListStyles.iconsDelete}>
           <TouchableOpacity
             onPress={() => {
-              props.deleteFood(props.index);
+              props.deleteItem(props.index);
             }}
           >
             <Ionicons name="ios-trash-bin-sharp" size={23} color="#000" />

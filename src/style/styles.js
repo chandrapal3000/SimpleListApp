@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     // borderRadius: 5,
     elevation: 10,
   },
-  foodItemsContainer: {
+  itemItemsContainer: {
     maxHeight: 400,
   },
   dottedHorizontalLine: {
@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
   },
-  addFoodItemContainer: {
+  addItemItemContainer: {
     flexDirection: "row",
     // justifyContent : 'center',
     alignItems: "center",
@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: "#F5F5F5",
   },
-  addFoodItemTextStyle: {
+  addItemItemTextStyle: {
     fontWeight: "bold",
     fontSize: 18,
   },
@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
   smallText: {
     fontSize: 15,
   },
-  finalFoodListContainerButton: {
+  finalItemListContainerButton: {
     borderColor: "#D3D3D3",
     borderWidth: 1,
     borderRadius: 10,
@@ -84,7 +84,7 @@ export const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
   },
-  finalFoodListContainerButtonText: {
+  finalItemListContainerButtonText: {
     color: "#fff",
     fontWeight: "bold",
     fontSize: 20,

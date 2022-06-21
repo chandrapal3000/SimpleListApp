@@ -22,7 +22,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Home from "./src/screens/Home";
-import FinalFoodListScreen from "./src/screens/FinalFoodListScreen";
+import FinalItemListScreen from "./src/screens/FinalItemListScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -44,8 +44,8 @@ export default function App() {
           component={Home}
         />
         <Stack.Screen
-          name="FinalFoodListScreen"
-          component={FinalFoodListScreen}
+          name="FinalItemListScreen"
+          component={FinalItemListScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

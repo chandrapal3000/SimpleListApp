@@ -47,11 +47,11 @@ export const modalStyles = StyleSheet.create({
       alignItems: "center",
       // justifyContent: "fl",
     },
-    addFoodTextContainer: {
+    addItemTextContainer: {
       width: "50%",
       marginBottom: 20,
     },
-    addFoodTextSubContainer: {
+    addItemTextSubContainer: {
       flexDirection: "row",
       justifyContent: "flex-start",
       // marginLeft: 20,
